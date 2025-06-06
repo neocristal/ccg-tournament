@@ -2,9 +2,13 @@
 EnGarde CCG Tournament Wordpress plugin
 
 Summary of What Will Be Included:
+
 📦 Plugin Name: ccg-tournament
+
 ✅ Features:
+
 Module	Description
+
 🔁 Player CRUD	Add/Edit/Delete players via frontend modal
 🧙 Avatars	Avatar URL support per player
 📜 Battle storylines	Rich text editor (TinyMCE) for storyline input
