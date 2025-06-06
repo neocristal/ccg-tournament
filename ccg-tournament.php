@@ -3,7 +3,7 @@
 Plugin Name: CCG Tournament Manager
 Description: Full Swiss tournament system with players, teams, brackets, emails, stats, REST, and visualizations.
 Version: 2.0
-Author: WordPressㆍCopilot
+Author: EnGarde Games, MB and EnGarde Games Ltd
 */
 
 defined('ABSPATH') || exit;
