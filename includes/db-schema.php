@@ -14,16 +14,17 @@ function ccg_create_tables() {
             user_id BIGINT UNSIGNED,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         ) $charset;
-        
+
         CREATE TABLE {$wpdb->prefix}ccg_players (
             id INT AUTO_INCREMENT PRIMARY KEY,
             tournament_id INT,
             user_id BIGINT UNSIGNED,
             name VARCHAR(255),
             nickname VARCHAR(255),
+            team VARCHAR(255),
             deck TEXT,
             avatar_url TEXT,
-            character_status ENUM('live','in_prison','dead') DEFAULT 'live'
+            character_status ENUM('live','in_prison','dead','withdrawn','banned') DEFAULT 'live'
         ) $charset;
 
         CREATE TABLE {$wpdb->prefix}ccg_matches (
@@ -32,8 +33,9 @@ function ccg_create_tables() {
             round_number INT,
             player1_id INT,
             player2_id INT,
-            result ENUM('player1','player2','draw'),
-            story LONGTEXT
+            result ENUM('player1','player2','draw') DEFAULT NULL,
+            story LONGTEXT,
+            date_played DATETIME DEFAULT CURRENT_TIMESTAMP
         ) $charset;
     ");
 }
