@@ -3,13 +3,15 @@
 add_action('wp_ajax_ccg_save_player', function () {
     check_ajax_referer('ccg_nonce', 'nonce');
     global $wpdb;
-    $id = intval($_POST['id']);
+
     $user_id = get_current_user_id();
+    $id = intval($_POST['id']);
     $data = [
         'name' => sanitize_text_field($_POST['name']),
         'nickname' => sanitize_text_field($_POST['nickname']),
         'deck' => sanitize_textarea_field($_POST['deck']),
-        'avatar_url' => esc_url_raw($_POST['avatar'])
+        'avatar_url' => esc_url_raw($_POST['avatar']),
+        'team' => sanitize_text_field($_POST['team']),
     ];
 
     if ($id) {

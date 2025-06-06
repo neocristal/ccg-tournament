@@ -5,6 +5,7 @@ jQuery(document).ready(function ($) {
         $('#player_nickname').val('');
         $('#player_deck').val('');
         $('#player_avatar').val('');
+        $('#player_team').val('');
         $('#ccg-modal').fadeIn();
     });
 
@@ -14,6 +15,7 @@ jQuery(document).ready(function ($) {
         $('#player_nickname').val($(this).data('nick'));
         $('#player_deck').val($(this).data('deck'));
         $('#player_avatar').val($(this).data('avatar'));
+        $('#player_team').val($(this).data('team'));
         $('#ccg-modal').fadeIn();
     });
 
@@ -37,7 +39,8 @@ jQuery(document).ready(function ($) {
             name: $('#player_name').val(),
             nickname: $('#player_nickname').val(),
             deck: $('#player_deck').val(),
-            avatar: $('#player_avatar').val()
+            avatar: $('#player_avatar').val(),
+            team: $('#player_team').val()
         }, function () {
             location.reload();
         });
