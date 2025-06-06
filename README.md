@@ -24,7 +24,5 @@ Structure all plugin files
 Zip everything into a WordPress-compatible plugin
 
 🔧 Working on Packaging...
-⏳ Please give me 1–2 minutes to:
-Generate all necessary files
 Ensure all JS/CSS are enqueued properly
 Package assets, includes, templates, and main plugin file
