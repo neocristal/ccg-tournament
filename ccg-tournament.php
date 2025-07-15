@@ -68,6 +68,39 @@ add_shortcode('ccg_bracket', function ($atts) {
     return ccg_render_bracket_view($tid);
 });
 
+function ccg_render_bracket_view($tournament_id) {
+    global $wpdb;
+    $matches = $wpdb->get_results($wpdb->prepare(
+        "SELECT m.round_number, m.result, p1.nickname AS player1, p2.nickname AS player2
+         FROM {$wpdb->prefix}ccg_matches m
+         JOIN {$wpdb->prefix}ccg_players p1 ON m.player1_id = p1.id
+         JOIN {$wpdb->prefix}ccg_players p2 ON m.player2_id = p2.id
+         WHERE m.tournament_id = %d
+         ORDER BY m.round_number ASC, m.id ASC",
+         $tournament_id
+    ));
+    if (!$matches) {
+        return '<p>No matches found.</p>';
+    }
+    $grouped = [];
+    foreach ($matches as $m) {
+        $grouped[$m->round_number][] = $m;
+    }
+    ob_start();
+    echo '<div class="ccg-bracket-view">';
+    foreach ($grouped as $round => $list) {
+        echo '<h3>Round ' . intval($round) . '</h3><ul class="ccg-round">';
+        foreach ($list as $row) {
+            $res = $row->result ?: "TBD";
+            echo '<li>' . esc_html($row->player1) . ' vs ' . esc_html($row->player2) . ' - ' . esc_html($res) . '</li>';
+        }
+        echo '</ul>';
+    }
+    echo '</div>';
+    return ob_get_clean();
+}
+
+
 // REST API
 add_action('rest_api_init', function () {
     register_rest_route('ccg/v1', '/tournament/(?P<id>\d+)', [
